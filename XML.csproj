@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ApplicationIcon></ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.Desktop.v21.1">
+      <HintPath>..\..\Work\DevExpress\DevExpress 21.1.5\Components\Bin\NetCore\DevExpress.Data.Desktop.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v21.1">
+      <HintPath>..\..\Work\DevExpress\DevExpress 21.1.5\Components\Bin\Standard\DevExpress.Data.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v21.1">
+      <HintPath>..\..\Work\DevExpress\DevExpress 21.1.5\Components\Bin\NetCore\DevExpress.Utils.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v21.1">
+      <HintPath>..\..\Work\DevExpress\DevExpress 21.1.5\Components\Bin\NetCore\DevExpress.XtraBars.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraDialogs.v21.1">
+      <HintPath>..\..\Work\DevExpress\DevExpress 21.1.5\Components\Bin\NetCore\DevExpress.XtraDialogs.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v21.1">
+      <HintPath>..\..\Work\DevExpress\DevExpress 21.1.5\Components\Bin\NetCore\DevExpress.XtraEditors.v21.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v21.1">
+      <HintPath>..\..\Work\DevExpress\DevExpress 21.1.5\Components\Bin\NetCore\DevExpress.XtraLayout.v21.1.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Controls\SaveFileControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\OpenFileControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\FolderBrowserControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\ButtonEditControl.cs" />
+    <Compile Update="Controls\SkinManagerControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\NumericControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\SpinEditControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Controls\CheckEditControl.cs" />
+    <Compile Update="IControl.cs" />
+    <Compile Update="Forms\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Forms\XMLForm.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Configuration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Workspaces\XMLForm.Default.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Workspaces\XMLForm.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
