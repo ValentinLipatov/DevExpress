@@ -42,9 +42,9 @@ namespace XML
         protected CheckEditControl OpenFile { get; set; }
         protected CheckEditControl DeleteTempFiles { get; set; }
 
-        protected override void Create()
+        protected override void CreateFields()
         {
-            base.Create();
+            base.CreateFields();
 
             SQLServerName1 = Add<TextEditControl>(nameof(SQLServerName1), "SQL сервер", "SQL сервер А");
             SQLServerName2 = Add<TextEditControl>(nameof(SQLServerName2), "SQL сервер", "SQL сервер Б");
@@ -65,13 +65,18 @@ namespace XML
             TempFileName1 = Add<TextEditControl>(nameof(TempFileName1), "Название файла c XML A");
             TempFileName1.Properties.Mask.MaskType = MaskType.RegEx;
             TempFileName1.Properties.Mask.EditMask = @".*[.]xml";
-            TempFileName2 = Add<TextEditControl>(nameof(TempFileName2), "Название файла c XML B");
+            TempFileName2 = Add<TextEditControl>(nameof(TempFileName2), "Название файла c XML Б");
             TempFileName2.Properties.Mask.MaskType = MaskType.RegEx;
             TempFileName2.Properties.Mask.EditMask = @".*[.]xml";
             DeleteTempFiles = Add<CheckEditControl>(nameof(DeleteTempFiles), "Удалить файлы с XML после сравнения");      
             OpenFile = Add<CheckEditControl>(nameof(OpenFile), "Открыть результирующий файл после успешного сравнения");
             Compare = Add<SimpleButton>(nameof(Compare), "Сравнить", "Сравнить");
             Compare.Click += (s, e) => DoCompare();
+        }
+
+        protected override void CreateGroups()
+        {
+            base.CreateGroups();
 
             AddGroup("Group1", "Параметры А");
             AddGroup("Group2", "Параметры Б");

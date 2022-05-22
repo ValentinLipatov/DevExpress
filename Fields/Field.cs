@@ -1,12 +1,11 @@
-﻿using DevExpress.XtraEditors;
-using DevExpress.XtraLayout;
+﻿using DevExpress.XtraLayout;
 using System.Windows.Forms;
 
 namespace XML
 {
-    public class Field<T> : IField where T : Control
+    public class Field
     {
-        public Field(T control, LayoutControlItem layoutControl, string caption, string customizationFormCaption)
+        public Field(Control control, LayoutControlItem layoutControl, string caption, string customizationFormCaption)
         {
             Control = control;
             LayoutControl = layoutControl;
@@ -17,9 +16,7 @@ namespace XML
 
         public LayoutControlItem LayoutControl { get; set; }
 
-        public T Control { get; set; }
-
-        Control IField.Control => Control;
+        public Control Control { get; set; }
 
         public string Caption { get; set; }
 

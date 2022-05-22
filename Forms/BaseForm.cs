@@ -1,11 +1,9 @@
 ﻿using System.Windows.Forms;
 using DevExpress.XtraEditors;
 using DevExpress.XtraLayout;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DevExpress.Utils;
-using System;
 using System.ComponentModel;
 
 namespace XML
@@ -26,26 +24,7 @@ namespace XML
         private string WorkspaceFileName => $"Workspaces\\{Name}.xml";
 #endif
 
-        private List<IField> _fields;
-        private List<IField> Fields
-        {
-            get => _fields ??= new List<IField>();
-            set => _fields = value;
-        }
-
-        private List<IGroup> _groups;
-        private List<IGroup> Groups
-        {
-            get => _groups ??= new List<IGroup>();
-            set => _groups = value;
-        }
-
-        private List<ITabbedGroup> _tabbedGroups;
-        private List<ITabbedGroup> TabbedGroups
-        {
-            get => _tabbedGroups ??= new List<ITabbedGroup>();
-            set => _tabbedGroups = value;
-        }
+        private List<Field> Fields = new List<Field>();
 
         private WorkspaceManager WorkspaceManager { get; set; }
 
@@ -58,7 +37,8 @@ namespace XML
             if (WorkspaceManager.LoadWorkspace(Name, WorkspaceFileName, true))
                 WorkspaceManager.ApplyWorkspace(Name);
 
-            RefreshReferences();
+            CreateGroups();
+            RemoveUnusedControls();
             SetCustomizationProperties();
         }
 
@@ -88,44 +68,47 @@ namespace XML
             control.Name = name;
 
             var layoutControlItem = new LayoutControlItem();
-            layoutControlItem.Name = $"{layoutControlItem.GetType().Name}{name}";
+            layoutControlItem.Name = name;
             layoutControlItem.Control = control;
-            var customControl = new Field<T>(control, layoutControlItem, caption, customizationFormCaption);
+            var customControl = new Field(control, layoutControlItem, caption, customizationFormCaption);
 
             Fields.Add(customControl);
 
             return control;
         }
 
-        public TabbedControlGroup AddTabbedGroup(string name, string caption)
+        public void AddTabbedGroup(string name, string caption)
         {
-            return AddTabbedGroup(name, caption, caption);
+            AddTabbedGroup(name, caption, caption);
         }
 
-        public TabbedControlGroup AddTabbedGroup(string name, string caption, string customizationFormCaption)
+        public void AddTabbedGroup(string name, string caption, string customizationFormCaption)
         {
-            var tabbedControlGroup = LayoutControlGroup.AddTabbedGroup();
-            tabbedControlGroup.Name = $"{tabbedControlGroup.GetType().Name}{name}";
-            var tabbedGroup = new TabbedGroup(tabbedControlGroup, caption, customizationFormCaption);
-            TabbedGroups.Add(tabbedGroup);
-
-            return tabbedControlGroup;
+            var tabbedGroup = Contains<TabbedControlGroup>(name);
+            if (tabbedGroup == null)
+            {
+                tabbedGroup = LayoutControl.AddTabbedGroup();
+                tabbedGroup.Name = name;
+            }
+            tabbedGroup.Text = caption;
+            tabbedGroup.CustomizationFormText = customizationFormCaption;
         }
 
-        public LayoutControlGroup AddGroup(string name, string caption)
+        public void AddGroup(string name, string caption)
         {
-            return AddGroup(name, caption, caption);
+            AddGroup(name, caption, caption);
         }
 
-        public LayoutControlGroup AddGroup(string name, string caption, string customizationFormCaption)
+        public void AddGroup(string name, string caption, string customizationFormCaption)
         {
-            var layoutControlGroup = LayoutControlGroup.AddGroup();
-            layoutControlGroup.Name = $"{layoutControlGroup.GetType().Name}{name}";
-            layoutControlGroup.TextLocation = Locations.Top;
-            var group = new Group(layoutControlGroup, caption, customizationFormCaption);
-            Groups.Add(group);
-
-            return layoutControlGroup;
+            var group = Contains<LayoutControlGroup>(name);
+            if (group == null)
+            {
+                group = LayoutControl.AddGroup();
+                group.Name = name;
+            }
+            group.Text = caption;
+            group.CustomizationFormText = customizationFormCaption;
         }
 
         public void SetCustomizationProperties()
@@ -141,20 +124,10 @@ namespace XML
                 field.LayoutControl.CustomizationFormText = field.CustomizationFormCaption;
             }
 
-            foreach (var group in Groups)
-            {
-                group.LayoutControl.Text = group.Caption;
-                group.LayoutControl.CustomizationFormText = group.CustomizationFormCaption;
-            }
 
-            foreach (var tabbedGroup in TabbedGroups)
-            {
-                tabbedGroup.LayoutControl.Text = tabbedGroup.Caption;
-                tabbedGroup.LayoutControl.CustomizationFormText = tabbedGroup.CustomizationFormCaption;
-            }
         }
 
-        protected virtual void Create()
+        protected virtual void CreateFields()
         {
             Add<SkinManagerControl>("SkinManager", "Тема");
             var serializeControlValues = Add<CheckEditControl>("SerializeControlValues", "Сохранять значения полей при закрытии окна");
@@ -162,133 +135,71 @@ namespace XML
             serializeControlValues.AlwaysSerializeValue = true;
         }
 
-        public bool Contains(IGroup group, object item)
+        protected virtual void CreateGroups()
         {
-            if (item is LayoutControlGroup layoutControlGroup)
+            var toRemove = new List<Control>();
+            foreach (var item in LayoutControl.Controls)
             {
-                if (layoutControlGroup.Name == group.LayoutControl.Name)
-                {
-                    group.LayoutControl = layoutControlGroup;
-                    return true;
-                }
-                else
-                {
-                    foreach (var control in layoutControlGroup.Items)
-                    {
-                        if (Contains(group, control))
-                        {
-                            return true;
-                        }
-                    }
-                }
-            }
-            else if (item is TabbedControlGroup tabbedControlGroup)
-            {
-                foreach (var page in tabbedControlGroup.TabPages)
-                {
-                    if (Contains(group, page))
-                    {
-                        return true;
-                    }
-                }
+                if (item is Control control && !Fields.Any(e => e.Control.Name == control.Name))
+                    toRemove.Add(control);
             }
 
-            return false;
+            foreach (var item in toRemove)
+            {
+                LayoutControl.Controls.Remove(item);
+            }
         }
 
-        public bool Contains(ITabbedGroup tabbedGroup, object item)
+        protected T Contains<T>(string name) where T : BaseLayoutItem
         {
-            if (item is LayoutControlGroup layoutControlGroup)
-            {
-                foreach(var control in layoutControlGroup.Items)
-                {
-                    if (Contains(tabbedGroup, control))
-                    {
-                        return true;
-                    }
-                }
-            }
-            if (item is TabbedControlGroup tabbedControlGroup)
-            {
-                if (tabbedControlGroup.Name == tabbedGroup.LayoutControl.Name)
-                {
-                    tabbedGroup.LayoutControl = tabbedControlGroup;
-                    return true;
-                }
-                foreach (var page in tabbedControlGroup.TabPages)
-                {
-                    if (Contains(tabbedGroup, page))
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
-        }
-
-        protected void RefreshReferences()
-        {
-            foreach (var group in Groups)
-            {
-                bool contains = false;
-                foreach (var item in LayoutControl.Items)
-                {
-                    if (Contains(group, item))
-                    {
-                        contains = true;
-                        break;
-                    }
-                }
-
-                if (!contains)
-                {
-                    var layoutControlGroup = LayoutControl.AddGroup();
-                    layoutControlGroup.Name = group.LayoutControl.Name;
-                    group.LayoutControl = layoutControlGroup;
-                }
-            }
-
-            foreach (var tabbedGroup in TabbedGroups)
-            {
-                bool contains = false;
-                foreach (var item in LayoutControl.Items)
-                {
-                    if (Contains(tabbedGroup, item))
-                    {
-                        contains = true;
-                        break;
-                    }
-                }
-
-                if (!contains)
-                {
-                    var tabbedControlGroup = LayoutControl.AddTabbedGroup();
-                    tabbedControlGroup.Name = tabbedGroup.LayoutControl.Name;
-                    tabbedGroup.LayoutControl = tabbedControlGroup;
-                }
-            }
-
-            var itemsToRemove = new List<BaseLayoutItem>();
             foreach (var item in LayoutControl.Items)
             {
-                switch (item)
-                {
-                    case LayoutControlGroup layoutControlGroup:
-                        if (layoutControlGroup != LayoutControl.Root && !Groups.Any(e => e.LayoutControl.Name == layoutControlGroup.Name))
-                            itemsToRemove.Add(layoutControlGroup);
-                        break;
+                var result = Contains<T>(name, item);
+                if (result != null)
+                    return result;
+            }
 
-                    case TabbedControlGroup tabbedControlGroup:
-                        if (!TabbedGroups.Any(e => e.LayoutControl.Name == tabbedControlGroup.Name))
-                            itemsToRemove.Add(tabbedControlGroup);
-                        break;
+            return null;
+        }
+
+        public T Contains<T>(string name, object control) where T : BaseLayoutItem
+        {
+            if (control is T typedControl && typedControl.Name == name)
+            {
+                return typedControl;
+            }
+            else if (control is LayoutControlGroup layoutControlGroup)
+            {
+                foreach (var item in layoutControlGroup.Items)
+                {
+                    var result = Contains<T>(name, item);
+                    if (result != null)
+                        return result;
                 }
             }
-            foreach (var item in itemsToRemove)
+            else if (control is TabbedControlGroup tabbedControlGroup)
             {
-                LayoutControl.Remove(item, true);
+                foreach (var item in tabbedControlGroup.TabPages)
+                {
+                    var result = Contains<T>(name, item);
+                    if (result != null)
+                        return result;
+                }
             }
+
+            return null;
+        }
+
+        public void RemoveUnusedControls()
+        {
+            var toRemove = new List<LayoutControlItem>();
+
+            foreach (var item in LayoutControl.Items)
+                if (item is LayoutControlItem layoutControlItem && layoutControlItem.IsHidden && layoutControlItem.Control == null)
+                    toRemove.Add(layoutControlItem);
+
+            foreach (var item in toRemove)
+                LayoutControl.Remove(item, true);
         }
 
         private void Initialize()
@@ -301,11 +212,9 @@ namespace XML
             LayoutControl = new LayoutControl();
             LayoutControlGroup = new LayoutControlGroup();
 
-            Create();
+            CreateFields();
 
             LayoutControl.SuspendLayout();
-            foreach (var field in Fields)
-               field.Control.SuspendLayout();
             SuspendLayout();
 
             foreach (var field in Fields)
@@ -348,8 +257,6 @@ namespace XML
             }
             LayoutControlGroup.EndInit();
 
-            foreach (var field in Fields)
-                field.Control.ResumeLayout();
             LayoutControl.ResumeLayout(false);
             ResumeLayout(false);
             

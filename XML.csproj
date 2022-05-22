@@ -67,12 +67,10 @@
     <None Update="Configuration.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Workspaces\XMLForm.Default.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Workspaces\XMLForm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Workspaces\" />
   </ItemGroup>
 
 </Project>
