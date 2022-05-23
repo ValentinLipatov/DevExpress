@@ -23,7 +23,7 @@
       <property name="UseDefaultLookAndFeel">true</property>
       <property name="UseWindowsXPTheme">false</property>
     </property>
-    <property name="Items" iskey="true" value="27">
+    <property name="Items" iskey="true" value="25">
       <property name="Item1" isnull="true" iskey="true">
         <property name="TypeName">LayoutGroup</property>
         <property name="TabbedGroupParentName" />
@@ -152,7 +152,7 @@
         <property name="Location">@1,X=0@1,Y=0</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Параметры А</property>
-        <property name="CustomizationFormText">Параметры А</property>
+        <property name="CustomizationFormText">Параметры А (Group1)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
       </property>
@@ -208,7 +208,7 @@
         <property name="Size">@3,Width=427@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название таблицы</property>
-        <property name="CustomizationFormText">Название таблицы А</property>
+        <property name="CustomizationFormText">Название таблицы (TableName1)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -265,7 +265,7 @@
         <property name="Size">@3,Width=427@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название столбца XML</property>
-        <property name="CustomizationFormText">Название столбца XML А</property>
+        <property name="CustomizationFormText">Название столбца XML (XMLColumnName1)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -322,7 +322,7 @@
         <property name="Size">@3,Width=427@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Значение Id</property>
-        <property name="CustomizationFormText">Значение Id А</property>
+        <property name="CustomizationFormText">Значение Id (Id1)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -379,7 +379,7 @@
         <property name="Size">@3,Width=427@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">SQL сервер</property>
-        <property name="CustomizationFormText">SQL сервер А</property>
+        <property name="CustomizationFormText">SQL сервер (SQLServerName1)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -436,7 +436,7 @@
         <property name="Size">@3,Width=427@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">База данных</property>
-        <property name="CustomizationFormText">База данных А</property>
+        <property name="CustomizationFormText">База данных (DatabaseName1)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -493,7 +493,7 @@
         <property name="Size">@3,Width=427@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название столбца Id</property>
-        <property name="CustomizationFormText">Название столбца Id А</property>
+        <property name="CustomizationFormText">Название столбца Id (IdColumnName1)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -560,7 +560,7 @@
         <property name="Location">@3,X=451@1,Y=0</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Параметры Б</property>
-        <property name="CustomizationFormText">Параметры Б</property>
+        <property name="CustomizationFormText">Параметры Б (Group2)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
       </property>
@@ -616,7 +616,7 @@
         <property name="Size">@3,Width=429@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название таблицы</property>
-        <property name="CustomizationFormText">Название таблицы Б</property>
+        <property name="CustomizationFormText">Название таблицы (TableName2)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -673,7 +673,7 @@
         <property name="Size">@3,Width=429@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название столбца XML</property>
-        <property name="CustomizationFormText">Название столбца XML Б</property>
+        <property name="CustomizationFormText">Название столбца XML (XMLColumnName2)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -730,7 +730,7 @@
         <property name="Size">@3,Width=429@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">SQL сервер</property>
-        <property name="CustomizationFormText">SQL сервер Б</property>
+        <property name="CustomizationFormText">SQL сервер (SQLServerName2)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -787,7 +787,7 @@
         <property name="Size">@3,Width=429@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Значение Id</property>
-        <property name="CustomizationFormText">Значение Id Б</property>
+        <property name="CustomizationFormText">Значение Id (Id2)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -844,7 +844,7 @@
         <property name="Size">@3,Width=429@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">База данных</property>
-        <property name="CustomizationFormText">База данных Б</property>
+        <property name="CustomizationFormText">База данных (DatabaseName2)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
@@ -901,69 +901,12 @@
         <property name="Size">@3,Width=429@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название столбца Id</property>
-        <property name="CustomizationFormText">Название столбца Id Б</property>
+        <property name="CustomizationFormText">Название столбца Id (IdColumnName2)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
       </property>
       <property name="Item16" isnull="true" iskey="true">
-        <property name="TypeName">LayoutControlItem</property>
-        <property name="ControlName">SerializeControlValues</property>
-        <property name="AllowHtmlStringInCaption">false</property>
-        <property name="TextAlignMode">UseParentOptions</property>
-        <property name="SizeConstraintsType">Default</property>
-        <property name="Image" isnull="true" />
-        <property name="ImageIndex">-1</property>
-        <property name="ImageAlignment">MiddleLeft</property>
-        <property name="ImageToTextDistance">5</property>
-        <property name="SvgImage" isnull="true" />
-        <property name="SvgImageSize">@1,Width=0@1,Height=0</property>
-        <property name="MaxSize">@1,Width=0@2,Height=23</property>
-        <property name="MinSize">@3,Width=264@2,Height=23</property>
-        <property name="ControlAlignment">TopLeft</property>
-        <property name="ContentVisible">true</property>
-        <property name="HighlightFocusedItem">Default</property>
-        <property name="TrimClientAreaToControl">true</property>
-        <property name="ContentVertAlignment">Default</property>
-        <property name="ContentHorzAlignment">Default</property>
-        <property name="AllowGlyphSkinning">Default</property>
-        <property name="OptionsCustomization" isnull="true" iskey="true">
-          <property name="AllowDrag">Default</property>
-          <property name="AllowDrop">Default</property>
-        </property>
-        <property name="OptionsTableLayoutItem" isnull="true" iskey="true">
-          <property name="RowIndex">0</property>
-          <property name="RowSpan">1</property>
-          <property name="ColumnIndex">0</property>
-          <property name="ColumnSpan">1</property>
-        </property>
-        <property name="OptionsToolTip" isnull="true" iskey="true">
-          <property name="ToolTip" />
-          <property name="ToolTipTitle" />
-          <property name="ToolTipIconType">None</property>
-          <property name="ImmediateToolTip">false</property>
-          <property name="AllowHtmlString">Default</property>
-          <property name="IconToolTip" />
-          <property name="IconToolTipTitle" />
-          <property name="IconToolTipIconType">None</property>
-          <property name="EnableIconToolTip">true</property>
-          <property name="IconImmediateToolTip">false</property>
-          <property name="IconAllowHtmlString">Default</property>
-        </property>
-        <property name="Name">SerializeControlValues</property>
-        <property name="ParentName">Root</property>
-        <property name="TextVisible">false</property>
-        <property name="TextSize">@1,Width=0@1,Height=0</property>
-        <property name="Location">@1,X=0@3,Y=423</property>
-        <property name="Size">@3,Width=904@2,Height=23</property>
-        <property name="ShowInCustomizationForm">true</property>
-        <property name="Text">Сохранять значения полей при закрытии окна</property>
-        <property name="CustomizationFormText">Сохранять значения полей при закрытии окна</property>
-        <property name="StartNewLine">false</property>
-        <property name="Visibility">Always</property>
-        <property name="TextLocation">Default</property>
-      </property>
-      <property name="Item17" isnull="true" iskey="true">
         <property name="TypeName">LayoutControlItem</property>
         <property name="ControlName">Compare</property>
         <property name="AllowHtmlStringInCaption">false</property>
@@ -1011,16 +954,16 @@
         <property name="ParentName">Root</property>
         <property name="TextVisible">false</property>
         <property name="TextSize">@1,Width=0@1,Height=0</property>
-        <property name="Location">@3,X=452@3,Y=372</property>
-        <property name="Size">@3,Width=452@2,Height=26</property>
+        <property name="Location">@3,X=451@3,Y=372</property>
+        <property name="Size">@3,Width=453@2,Height=26</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Сравнить</property>
-        <property name="CustomizationFormText">Сравнить</property>
+        <property name="CustomizationFormText">Сравнить (Compare)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
       </property>
-      <property name="Item18" isnull="true" iskey="true">
+      <property name="Item17" isnull="true" iskey="true">
         <property name="TypeName">EmptySpaceItem</property>
         <property name="TextVisible">false</property>
         <property name="TextLocation">Default</property>
@@ -1070,14 +1013,14 @@
         <property name="ParentName">Root</property>
         <property name="TextSize">@1,Width=0@1,Height=0</property>
         <property name="Location">@1,X=0@3,Y=398</property>
-        <property name="Size">@3,Width=904@2,Height=25</property>
+        <property name="Size">@3,Width=904@2,Height=48</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">item0</property>
         <property name="CustomizationFormText">item0</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
       </property>
-      <property name="Item19" isnull="true" iskey="true">
+      <property name="Item18" isnull="true" iskey="true">
         <property name="TypeName">EmptySpaceItem</property>
         <property name="TextVisible">false</property>
         <property name="TextLocation">Default</property>
@@ -1127,14 +1070,14 @@
         <property name="ParentName">Root</property>
         <property name="TextSize">@1,Width=0@1,Height=0</property>
         <property name="Location">@1,X=0@3,Y=372</property>
-        <property name="Size">@3,Width=452@2,Height=26</property>
+        <property name="Size">@3,Width=451@2,Height=26</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">item1</property>
         <property name="CustomizationFormText">item1</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
       </property>
-      <property name="Item20" isnull="true" iskey="true">
+      <property name="Item19" isnull="true" iskey="true">
         <property name="TypeName">LayoutGroup</property>
         <property name="TabbedGroupParentName" />
         <property name="GroupBordersVisible">true</property>
@@ -1196,11 +1139,11 @@
         <property name="Location">@1,X=0@3,Y=187</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Параметры результатов</property>
-        <property name="CustomizationFormText">Параметры результатов</property>
+        <property name="CustomizationFormText">Параметры результатов (Group3)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
       </property>
-      <property name="Item21" isnull="true" iskey="true">
+      <property name="Item20" isnull="true" iskey="true">
         <property name="TypeName">LayoutControlItem</property>
         <property name="ControlName">OutputFileName</property>
         <property name="AllowHtmlStringInCaption">false</property>
@@ -1252,12 +1195,12 @@
         <property name="Size">@3,Width=880@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название результирующего файла</property>
-        <property name="CustomizationFormText">Название результирующего файла</property>
+        <property name="CustomizationFormText">Название результирующего файла (OutputFileName)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
       </property>
-      <property name="Item22" isnull="true" iskey="true">
+      <property name="Item21" isnull="true" iskey="true">
         <property name="TypeName">LayoutControlItem</property>
         <property name="ControlName">OpenFile</property>
         <property name="AllowHtmlStringInCaption">false</property>
@@ -1309,12 +1252,12 @@
         <property name="Size">@3,Width=880@2,Height=23</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Открыть результирующий файл после успешного сравнения</property>
-        <property name="CustomizationFormText">Открыть результирующий файл после успешного сравнения</property>
+        <property name="CustomizationFormText">Открыть результирующий файл после успешного сравнения (OpenFile)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
       </property>
-      <property name="Item23" isnull="true" iskey="true">
+      <property name="Item22" isnull="true" iskey="true">
         <property name="TypeName">LayoutControlItem</property>
         <property name="ControlName">DeleteTempFiles</property>
         <property name="AllowHtmlStringInCaption">false</property>
@@ -1366,12 +1309,12 @@
         <property name="Size">@3,Width=880@2,Height=23</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Удалить файлы с XML после сравнения</property>
-        <property name="CustomizationFormText">Удалить файлы с XML после сравнения</property>
+        <property name="CustomizationFormText">Удалить файлы с XML после сравнения (DeleteTempFiles)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
       </property>
-      <property name="Item24" isnull="true" iskey="true">
+      <property name="Item23" isnull="true" iskey="true">
         <property name="TypeName">LayoutControlItem</property>
         <property name="ControlName">TempFileName2</property>
         <property name="AllowHtmlStringInCaption">false</property>
@@ -1423,12 +1366,12 @@
         <property name="Size">@3,Width=880@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название файла c XML Б</property>
-        <property name="CustomizationFormText">Название файла c XML Б</property>
+        <property name="CustomizationFormText">Название файла c XML Б (TempFileName2)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
       </property>
-      <property name="Item25" isnull="true" iskey="true">
+      <property name="Item24" isnull="true" iskey="true">
         <property name="TypeName">LayoutControlItem</property>
         <property name="ControlName">TempFileName1</property>
         <property name="AllowHtmlStringInCaption">false</property>
@@ -1480,12 +1423,12 @@
         <property name="Size">@3,Width=880@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Название файла c XML A</property>
-        <property name="CustomizationFormText">Название файла c XML A</property>
+        <property name="CustomizationFormText">Название файла c XML A (TempFileName1)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
       </property>
-      <property name="Item26" isnull="true" iskey="true">
+      <property name="Item25" isnull="true" iskey="true">
         <property name="TypeName">LayoutControlItem</property>
         <property name="ControlName">OutputPath</property>
         <property name="AllowHtmlStringInCaption">false</property>
@@ -1537,128 +1480,11 @@
         <property name="Size">@3,Width=880@2,Height=24</property>
         <property name="ShowInCustomizationForm">true</property>
         <property name="Text">Папка</property>
-        <property name="CustomizationFormText">Папка</property>
-        <property name="StartNewLine">false</property>
-        <property name="Visibility">Always</property>
-        <property name="TextLocation">Default</property>
-      </property>
-      <property name="Item27" isnull="true" iskey="true">
-        <property name="TypeName">LayoutControlItem</property>
-        <property name="ControlName">SkinManager</property>
-        <property name="AllowHtmlStringInCaption">false</property>
-        <property name="TextAlignMode">UseParentOptions</property>
-        <property name="SizeConstraintsType">Default</property>
-        <property name="Image" isnull="true" />
-        <property name="ImageIndex">-1</property>
-        <property name="ImageAlignment">MiddleLeft</property>
-        <property name="ImageToTextDistance">5</property>
-        <property name="SvgImage" isnull="true" />
-        <property name="SvgImageSize">@1,Width=0@1,Height=0</property>
-        <property name="MaxSize">@1,Width=0@2,Height=24</property>
-        <property name="MinSize">@3,Width=239@2,Height=24</property>
-        <property name="ControlAlignment">TopLeft</property>
-        <property name="ContentVisible">true</property>
-        <property name="HighlightFocusedItem">Default</property>
-        <property name="TrimClientAreaToControl">true</property>
-        <property name="ContentVertAlignment">Default</property>
-        <property name="ContentHorzAlignment">Default</property>
-        <property name="AllowGlyphSkinning">Default</property>
-        <property name="OptionsCustomization" isnull="true" iskey="true">
-          <property name="AllowDrag">Default</property>
-          <property name="AllowDrop">Default</property>
-        </property>
-        <property name="OptionsTableLayoutItem" isnull="true" iskey="true">
-          <property name="RowIndex">0</property>
-          <property name="RowSpan">1</property>
-          <property name="ColumnIndex">0</property>
-          <property name="ColumnSpan">1</property>
-        </property>
-        <property name="OptionsToolTip" isnull="true" iskey="true">
-          <property name="ToolTip" />
-          <property name="ToolTipTitle" />
-          <property name="ToolTipIconType">None</property>
-          <property name="ImmediateToolTip">false</property>
-          <property name="AllowHtmlString">Default</property>
-          <property name="IconToolTip" />
-          <property name="IconToolTipTitle" />
-          <property name="IconToolTipIconType">None</property>
-          <property name="EnableIconToolTip">true</property>
-          <property name="IconImmediateToolTip">false</property>
-          <property name="IconAllowHtmlString">Default</property>
-        </property>
-        <property name="Name">SkinManager</property>
-        <property name="ParentName">Customization</property>
-        <property name="TextVisible">true</property>
-        <property name="TextSize">@3,Width=180@2,Height=13</property>
-        <property name="Location">@1,X=0@1,Y=0</property>
-        <property name="Size">@4,Width=1900@2,Height=24</property>
-        <property name="ShowInCustomizationForm">true</property>
-        <property name="Text">Тема</property>
-        <property name="CustomizationFormText">Тема</property>
+        <property name="CustomizationFormText">Папка (OutputPath)</property>
         <property name="StartNewLine">false</property>
         <property name="Visibility">Always</property>
         <property name="TextLocation">Default</property>
       </property>
     </property>
-  </property>
-  <property name="$SkinManager_SkinManagerControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="SkinManager_SkinManagerControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" type="System.String">Office 2010 Blue</property>
-  </property>
-  <property name="$SerializeControlValues_CheckEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="SerializeControlValues_CheckEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" type="System.Boolean">true</property>
-  </property>
-  <property name="$SQLServerName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="SQLServerName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$SQLServerName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="SQLServerName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$DatabaseName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="DatabaseName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$DatabaseName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="DatabaseName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$TableName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="TableName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$TableName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="TableName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$IdColumnName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="IdColumnName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$IdColumnName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="IdColumnName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$XMLColumnName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="XMLColumnName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$XMLColumnName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="XMLColumnName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$Id1_NumericControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="Id1_NumericControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$Id2_NumericControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="Id2_NumericControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$OutputPath_FolderBrowserControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="OutputPath_FolderBrowserControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$OutputFileName_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="OutputFileName_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$TempFileName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="TempFileName1_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$TempFileName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="TempFileName2_TextEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" isnull="true" />
-  </property>
-  <property name="$DeleteTempFiles_CheckEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="DeleteTempFiles_CheckEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" type="System.Boolean">false</property>
-  </property>
-  <property name="$OpenFile_CheckEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_" iskey="true" value="OpenFile_CheckEditControl_LayoutControl_LayoutControl_XMLForm_XMLForm_">
-    <property name="SerializableValue" type="System.Boolean">false</property>
   </property>
 </workspace>

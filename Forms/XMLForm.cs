@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
+using DevExpress.LookAndFeel;
+using DevExpress.Skins;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Mask;
 
@@ -15,69 +17,66 @@ namespace XML
     {
         public XMLForm()
         {
-            Name = nameof(XMLForm);
+            Name = "XMLForm";
             Text = "Сравнение XML";
 
             var resourceManager = new ResourceManager(GetType());
             IconOptions.Icon = (Icon)resourceManager.GetObject("Icon");
+            UserLookAndFeel.Default.SetSkinStyle("Office 2010 Blue");
         }
 
-        protected TextEditControl SQLServerName1 { get; set; }
-        protected TextEditControl SQLServerName2 { get; set; }
-        protected TextEditControl DatabaseName1 { get; set; }
-        protected TextEditControl DatabaseName2 { get; set; }
-        protected TextEditControl TableName1 { get; set; }
-        protected TextEditControl TableName2 { get; set; }
-        protected TextEditControl IdColumnName1 { get; set; }
-        protected TextEditControl IdColumnName2 { get; set; }
-        protected TextEditControl XMLColumnName1 { get; set; }
-        protected TextEditControl XMLColumnName2 { get; set; }
+        protected TextEdit SQLServerName1 { get; set; }
+        protected TextEdit SQLServerName2 { get; set; }
+        protected TextEdit DatabaseName1 { get; set; }
+        protected TextEdit DatabaseName2 { get; set; }
+        protected TextEdit TableName1 { get; set; }
+        protected TextEdit TableName2 { get; set; }
+        protected TextEdit IdColumnName1 { get; set; }
+        protected TextEdit IdColumnName2 { get; set; }
+        protected TextEdit XMLColumnName1 { get; set; }
+        protected TextEdit XMLColumnName2 { get; set; }
         protected NumericControl Id1 { get; set; }
         protected NumericControl Id2 { get; set; }
         protected FolderBrowserControl OutputPath { get; set; }
-        protected TextEditControl OutputFileName { get; set; }
-        protected TextEditControl TempFileName1 { get; set; }
-        protected TextEditControl TempFileName2 { get; set; }
+        protected TextEdit OutputFileName { get; set; }
+        protected TextEdit TempFileName1 { get; set; }
+        protected TextEdit TempFileName2 { get; set; }
         protected SimpleButton Compare { get; set; }
-        protected CheckEditControl OpenFile { get; set; }
-        protected CheckEditControl DeleteTempFiles { get; set; }
+        protected CheckEdit OpenFile { get; set; }
+        protected CheckEdit DeleteTempFiles { get; set; }
 
         protected override void CreateFields()
         {
-            base.CreateFields();
-
-            SQLServerName1 = Add<TextEditControl>(nameof(SQLServerName1), "SQL сервер", "SQL сервер А");
-            SQLServerName2 = Add<TextEditControl>(nameof(SQLServerName2), "SQL сервер", "SQL сервер Б");
-            DatabaseName1 = Add<TextEditControl>(nameof(DatabaseName1), "База данных", "База данных А");
-            DatabaseName2 = Add<TextEditControl>(nameof(DatabaseName2), "База данных", "База данных Б");
-            TableName1 = Add<TextEditControl>(nameof(TableName1), "Название таблицы", "Название таблицы А");
-            TableName2 = Add<TextEditControl>(nameof(TableName2), "Название таблицы", "Название таблицы Б");
-            IdColumnName1 = Add<TextEditControl>(nameof(IdColumnName1), "Название столбца Id", "Название столбца Id А");
-            IdColumnName2 = Add<TextEditControl>(nameof(IdColumnName2), "Название столбца Id", "Название столбца Id Б");
-            XMLColumnName1 = Add<TextEditControl>(nameof(XMLColumnName1), "Название столбца XML", "Название столбца XML А");
-            XMLColumnName2 = Add<TextEditControl>(nameof(XMLColumnName2), "Название столбца XML", "Название столбца XML Б");
-            Id1 = Add<NumericControl>(nameof(Id1), "Значение Id", "Значение Id А");
-            Id2 = Add<NumericControl>(nameof(Id2), "Значение Id", "Значение Id Б");
-            OutputPath = Add<FolderBrowserControl>(nameof(OutputPath), "Папка");
-            OutputFileName = Add<TextEditControl>(nameof(OutputFileName), "Название результирующего файла");
+            SQLServerName1 = Add<TextEdit>("SQLServerName1", "SQL сервер");
+            SQLServerName2 = Add<TextEdit>("SQLServerName2", "SQL сервер");
+            DatabaseName1 = Add<TextEdit>("DatabaseName1", "База данных");
+            DatabaseName2 = Add<TextEdit>("DatabaseName2", "База данных");
+            TableName1 = Add<TextEdit>("TableName1", "Название таблицы");
+            TableName2 = Add<TextEdit>("TableName2", "Название таблицы");
+            IdColumnName1 = Add<TextEdit>("IdColumnName1", "Название столбца Id");
+            IdColumnName2 = Add<TextEdit>("IdColumnName2", "Название столбца Id");
+            XMLColumnName1 = Add<TextEdit>("XMLColumnName1", "Название столбца XML");
+            XMLColumnName2 = Add<TextEdit>("XMLColumnName2", "Название столбца XML");
+            Id1 = Add<NumericControl>("Id1", "Значение Id");
+            Id2 = Add<NumericControl>("Id2", "Значение Id");
+            OutputPath = Add<FolderBrowserControl>("OutputPath", "Папка");
+            OutputFileName = Add<TextEdit>("OutputFileName", "Название результирующего файла");
             OutputFileName.Properties.Mask.MaskType = MaskType.RegEx;
             OutputFileName.Properties.Mask.EditMask = @".*[.]html";
-            TempFileName1 = Add<TextEditControl>(nameof(TempFileName1), "Название файла c XML A");
+            TempFileName1 = Add<TextEdit>("TempFileName1", "Название файла c XML A");
             TempFileName1.Properties.Mask.MaskType = MaskType.RegEx;
             TempFileName1.Properties.Mask.EditMask = @".*[.]xml";
-            TempFileName2 = Add<TextEditControl>(nameof(TempFileName2), "Название файла c XML Б");
+            TempFileName2 = Add<TextEdit>("TempFileName2", "Название файла c XML Б");
             TempFileName2.Properties.Mask.MaskType = MaskType.RegEx;
             TempFileName2.Properties.Mask.EditMask = @".*[.]xml";
-            DeleteTempFiles = Add<CheckEditControl>(nameof(DeleteTempFiles), "Удалить файлы с XML после сравнения");      
-            OpenFile = Add<CheckEditControl>(nameof(OpenFile), "Открыть результирующий файл после успешного сравнения");
-            Compare = Add<SimpleButton>(nameof(Compare), "Сравнить", "Сравнить");
+            DeleteTempFiles = Add<CheckEdit>("DeleteTempFiles", "Удалить файлы с XML после сравнения");      
+            OpenFile = Add<CheckEdit>("OpenFile", "Открыть результирующий файл после успешного сравнения");
+            Compare = Add<SimpleButton>("Compare", "Сравнить");
             Compare.Click += (s, e) => DoCompare();
         }
 
         protected override void CreateGroups()
         {
-            base.CreateGroups();
-
             AddGroup("Group1", "Параметры А");
             AddGroup("Group2", "Параметры Б");
             AddGroup("Group3", "Параметры результатов");

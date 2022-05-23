@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DevExpress.Utils;
 using System.ComponentModel;
+using System;
 
 namespace XML
 {
@@ -26,13 +27,15 @@ namespace XML
 
         private List<Field> Fields = new List<Field>();
 
+        private HashSet<string> Names = new HashSet<string>();
+
         private WorkspaceManager WorkspaceManager { get; set; }
 
         private LayoutControl LayoutControl { get; set; }
 
         private LayoutControlGroup LayoutControlGroup { get; set; }
 
-        public void LoadWorkspace()
+        private void LoadWorkspace()
         {
             if (WorkspaceManager.LoadWorkspace(Name, WorkspaceFileName, true))
                 WorkspaceManager.ApplyWorkspace(Name);
@@ -42,7 +45,7 @@ namespace XML
             SetCustomizationProperties();
         }
 
-        public void SaveWorkspace()
+        private void SaveWorkspace()
         {
             WorkspaceManager.CaptureWorkspace(Name, true);
             WorkspaceManager.SaveWorkspace(Name, WorkspaceFileName, true);
@@ -50,107 +53,79 @@ namespace XML
 
         protected T Add<T>(string name, string caption) where T : Control, new()
         {
-            return Add<T>(name, caption, caption);
-        }
-
-        protected T Add<T>(string name, string caption, string customizationFormCaption) where T : Control, new()
-        {
-            return Add(new T(), name, caption, customizationFormCaption);
+            return Add(new T(), name, caption);
         }
 
         protected T Add<T>(T control, string name, string caption) where T : Control
         {
-            return Add(control, name, caption, caption);
-        }
+            CheckName(name);
 
-        protected T Add<T>(T control, string name, string caption, string customizationFormCaption) where T : Control
-        {
             control.Name = name;
-
             var layoutControlItem = new LayoutControlItem();
             layoutControlItem.Name = name;
             layoutControlItem.Control = control;
-            var customControl = new Field(control, layoutControlItem, caption, customizationFormCaption);
+            var customControl = new Field(layoutControlItem, name, caption);
 
             Fields.Add(customControl);
 
             return control;
         }
 
-        public void AddTabbedGroup(string name, string caption)
+        protected void AddTabbedGroup(string name, string caption)
         {
-            AddTabbedGroup(name, caption, caption);
-        }
+            CheckName(name);
 
-        public void AddTabbedGroup(string name, string caption, string customizationFormCaption)
-        {
             var tabbedGroup = Contains<TabbedControlGroup>(name);
             if (tabbedGroup == null)
             {
                 tabbedGroup = LayoutControl.AddTabbedGroup();
                 tabbedGroup.Name = name;
+#if RELEASE
+                tabbedGroup.HideToCustomization();
+#endif
             }
             tabbedGroup.Text = caption;
-            tabbedGroup.CustomizationFormText = customizationFormCaption;
+            tabbedGroup.CustomizationFormText = $"{tabbedGroup.Text} ({tabbedGroup.Name})";
         }
 
-        public void AddGroup(string name, string caption)
+        protected void AddGroup(string name, string caption)
         {
-            AddGroup(name, caption, caption);
-        }
+            CheckName(name);
 
-        public void AddGroup(string name, string caption, string customizationFormCaption)
-        {
             var group = Contains<LayoutControlGroup>(name);
             if (group == null)
             {
                 group = LayoutControl.AddGroup();
                 group.Name = name;
+#if RELEASE
+                group.HideToCustomization();
+#endif
             }
             group.Text = caption;
-            group.CustomizationFormText = customizationFormCaption;
+            group.CustomizationFormText = $"{group.Text} ({group.Name})";
         }
 
-        public void SetCustomizationProperties()
+        private void SetCustomizationProperties()
         {
             foreach (var field in Fields)
             {
-                if (field.Control is SimpleButton simpleButton)
+                var layoutControlItem = Contains<LayoutControlItem>(field.Name);
+
+                if (layoutControlItem.Control is SimpleButton simpleButton)
                     simpleButton.Text = field.Caption;
-                else if (field.Control is BaseCheckEdit baseCheckEdit)
+                else if (layoutControlItem.Control is BaseCheckEdit baseCheckEdit)
                     baseCheckEdit.Text = field.Caption;
 
-                field.LayoutControl.Text = field.Caption;
-                field.LayoutControl.CustomizationFormText = field.CustomizationFormCaption;
-            }
-
-
-        }
-
-        protected virtual void CreateFields()
-        {
-            Add<SkinManagerControl>("SkinManager", "Тема");
-            var serializeControlValues = Add<CheckEditControl>("SerializeControlValues", "Сохранять значения полей при закрытии окна");
-            serializeControlValues.CheckedChanged += (s, e) => Context.SerializeValues = serializeControlValues.Checked;
-            serializeControlValues.AlwaysSerializeValue = true;
-        }
-
-        protected virtual void CreateGroups()
-        {
-            var toRemove = new List<Control>();
-            foreach (var item in LayoutControl.Controls)
-            {
-                if (item is Control control && !Fields.Any(e => e.Control.Name == control.Name))
-                    toRemove.Add(control);
-            }
-
-            foreach (var item in toRemove)
-            {
-                LayoutControl.Controls.Remove(item);
+                layoutControlItem.Text = field.Caption;
+                layoutControlItem.CustomizationFormText = $"{layoutControlItem.Text} ({layoutControlItem.Name})";
             }
         }
 
-        protected T Contains<T>(string name) where T : BaseLayoutItem
+        protected abstract void CreateFields();
+
+        protected abstract void CreateGroups();
+
+        private T Contains<T>(string name) where T : BaseLayoutItem
         {
             foreach (var item in LayoutControl.Items)
             {
@@ -162,7 +137,7 @@ namespace XML
             return null;
         }
 
-        public T Contains<T>(string name, object control) where T : BaseLayoutItem
+        private T Contains<T>(string name, object control) where T : BaseLayoutItem
         {
             if (control is T typedControl && typedControl.Name == name)
             {
@@ -190,7 +165,7 @@ namespace XML
             return null;
         }
 
-        public void RemoveUnusedControls()
+        private void RemoveUnusedControls()
         {
             var toRemove = new List<LayoutControlItem>();
 
@@ -200,6 +175,14 @@ namespace XML
 
             foreach (var item in toRemove)
                 LayoutControl.Remove(item, true);
+        }
+
+        private void CheckName(string name)
+        {
+            if (Names.Contains(name))
+                throw new InvalidOperationException();
+            else
+                Names.Add(name);
         }
 
         private void Initialize()
@@ -219,7 +202,7 @@ namespace XML
 
             foreach (var field in Fields)
             {
-                if (field.Control is ISupportInitialize supportInitialize)
+                if (field.LayoutControl.Control is ISupportInitialize supportInitialize)
                     supportInitialize.BeginInit();
 
                 field.LayoutControl.BeginInit();
@@ -235,9 +218,9 @@ namespace XML
 
             foreach (var field in Fields)
             {
-                LayoutControl.Controls.Add(field.Control);
+                LayoutControl.Controls.Add(field.LayoutControl.Control);
                 
-                if (field.Control is ISupportStyleController controlWithStyleController)
+                if (field.LayoutControl.Control is ISupportStyleController controlWithStyleController)
                     controlWithStyleController.StyleController = LayoutControl;
             }
 
@@ -250,7 +233,7 @@ namespace XML
 
             foreach (var field in Fields)
             {
-                if (field.Control is ISupportInitialize supportInitialize)
+                if (field.LayoutControl.Control is ISupportInitialize supportInitialize)
                     supportInitialize.EndInit();
 
                 field.LayoutControl.EndInit();

@@ -36,26 +36,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Controls\SaveFileControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Controls\OpenFileControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Update="Controls\FolderBrowserControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Controls\ButtonEditControl.cs" />
-    <Compile Update="Controls\SkinManagerControl.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="Controls\NumericControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Controls\SpinEditControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Update="Controls\CheckEditControl.cs" />
     <Compile Update="IControl.cs" />
     <Compile Update="Forms\BaseForm.cs">
       <SubType>Form</SubType>
@@ -67,10 +53,6 @@
     <None Update="Configuration.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Workspaces\" />
   </ItemGroup>
 
 </Project>
