@@ -7,7 +7,6 @@ using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
 using DevExpress.LookAndFeel;
-using DevExpress.Skins;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Mask;
 
@@ -35,8 +34,8 @@ namespace XML
         protected TextEdit IdColumnName2 { get; set; }
         protected TextEdit XMLColumnName1 { get; set; }
         protected TextEdit XMLColumnName2 { get; set; }
-        protected NumericControl Id1 { get; set; }
-        protected NumericControl Id2 { get; set; }
+        protected TextEdit Id1 { get; set; }
+        protected TextEdit Id2 { get; set; }
         protected FolderBrowserControl OutputPath { get; set; }
         protected TextEdit OutputFileName { get; set; }
         protected TextEdit TempFileName1 { get; set; }
@@ -57,8 +56,12 @@ namespace XML
             IdColumnName2 = Add<TextEdit>("IdColumnName2", "Название столбца Id");
             XMLColumnName1 = Add<TextEdit>("XMLColumnName1", "Название столбца XML");
             XMLColumnName2 = Add<TextEdit>("XMLColumnName2", "Название столбца XML");
-            Id1 = Add<NumericControl>("Id1", "Значение Id");
-            Id2 = Add<NumericControl>("Id2", "Значение Id");
+            Id1 = Add<TextEdit>("Id1", "Значение Id");
+            Id1.Properties.Mask.MaskType = MaskType.Numeric;
+            Id1.Properties.Mask.EditMask = @"[0-9]+";
+            Id2 = Add<TextEdit>("Id2", "Значение Id");
+            Id2.Properties.Mask.MaskType = MaskType.Numeric;
+            Id2.Properties.Mask.EditMask = @"^[0-9]+";
             OutputPath = Add<FolderBrowserControl>("OutputPath", "Папка");
             OutputFileName = Add<TextEdit>("OutputFileName", "Название результирующего файла");
             OutputFileName.Properties.Mask.MaskType = MaskType.RegEx;
@@ -69,7 +72,7 @@ namespace XML
             TempFileName2 = Add<TextEdit>("TempFileName2", "Название файла c XML Б");
             TempFileName2.Properties.Mask.MaskType = MaskType.RegEx;
             TempFileName2.Properties.Mask.EditMask = @".*[.]xml";
-            DeleteTempFiles = Add<CheckEdit>("DeleteTempFiles", "Удалить файлы с XML после сравнения");      
+            DeleteTempFiles = Add<CheckEdit>("DeleteTempFiles", "Удалить файлы с XML после сравнения");
             OpenFile = Add<CheckEdit>("OpenFile", "Открыть результирующий файл после успешного сравнения");
             Compare = Add<SimpleButton>("Compare", "Сравнить");
             Compare.Click += (s, e) => DoCompare();

@@ -39,9 +39,6 @@
     <Compile Update="Controls\FolderBrowserControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="Controls\NumericControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Update="IControl.cs" />
     <Compile Update="Forms\BaseForm.cs">
       <SubType>Form</SubType>
@@ -51,6 +48,9 @@
 
   <ItemGroup>
     <None Update="Configuration.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Workspaces\XMLForm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
