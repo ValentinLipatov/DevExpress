@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.18" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,23 +37,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Controls\FolderBrowserControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Update="Forms\Form.cs" />
     <Compile Update="IControl.cs" />
     <Compile Update="Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Forms\XMLForm.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Configuration.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Workspaces\XMLForm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Workspaces\" />
   </ItemGroup>
 
 </Project>

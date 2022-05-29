@@ -1,12 +1,12 @@
 using System;
 using System.Windows.Forms;
 
-namespace XML
+namespace DevExpress
 {
     public static class Program
     {
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();

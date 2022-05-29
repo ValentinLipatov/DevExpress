@@ -1,27 +1,22 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Resources;
 using System.Windows.Forms;
-using DevExpress.LookAndFeel;
 using DevExpress.XtraEditors;
 using DevExpress.XtraEditors.Mask;
 
-namespace XML
+namespace DevExpress
 {
-    public class XMLForm : BaseForm
+    public class XMLForm : Form
     {
         public XMLForm()
         {
-            Name = "XMLForm";
             Text = "Сравнение XML";
 
-            var resourceManager = new ResourceManager(GetType());
-            IconOptions.Icon = (Icon)resourceManager.GetObject("Icon");
-            UserLookAndFeel.Default.SetSkinStyle("Office 2010 Blue");
+            SetIcon("Icon");
+            SetSkin("Office 2010 Blue");
         }
 
         protected TextEdit SQLServerName1 { get; set; }
@@ -36,7 +31,7 @@ namespace XML
         protected TextEdit XMLColumnName2 { get; set; }
         protected TextEdit Id1 { get; set; }
         protected TextEdit Id2 { get; set; }
-        protected FolderBrowserControl OutputPath { get; set; }
+        protected FolderTextControl OutputPath { get; set; }
         protected TextEdit OutputFileName { get; set; }
         protected TextEdit TempFileName1 { get; set; }
         protected TextEdit TempFileName2 { get; set; }
@@ -44,42 +39,46 @@ namespace XML
         protected CheckEdit OpenFile { get; set; }
         protected CheckEdit DeleteTempFiles { get; set; }
 
-        protected override void CreateFields()
+        protected override void CreateControls()
         {
-            SQLServerName1 = Add<TextEdit>("SQLServerName1", "SQL сервер");
-            SQLServerName2 = Add<TextEdit>("SQLServerName2", "SQL сервер");
-            DatabaseName1 = Add<TextEdit>("DatabaseName1", "База данных");
-            DatabaseName2 = Add<TextEdit>("DatabaseName2", "База данных");
-            TableName1 = Add<TextEdit>("TableName1", "Название таблицы");
-            TableName2 = Add<TextEdit>("TableName2", "Название таблицы");
-            IdColumnName1 = Add<TextEdit>("IdColumnName1", "Название столбца Id");
-            IdColumnName2 = Add<TextEdit>("IdColumnName2", "Название столбца Id");
-            XMLColumnName1 = Add<TextEdit>("XMLColumnName1", "Название столбца XML");
-            XMLColumnName2 = Add<TextEdit>("XMLColumnName2", "Название столбца XML");
-            Id1 = Add<TextEdit>("Id1", "Значение Id");
-            Id1.Properties.Mask.MaskType = MaskType.Numeric;
+            base.CreateControls();
+
+            SQLServerName1 = AddControl<TextEdit>("SQLServerName1", "SQL сервер");
+            SQLServerName2 = AddControl<TextEdit>("SQLServerName2", "SQL сервер");
+            DatabaseName1 = AddControl<TextEdit>("DatabaseName1", "База данных");
+            DatabaseName2 = AddControl<TextEdit>("DatabaseName2", "База данных");
+            TableName1 = AddControl<TextEdit>("TableName1", "Название таблицы");
+            TableName2 = AddControl<TextEdit>("TableName2", "Название таблицы");
+            IdColumnName1 = AddControl<TextEdit>("IdColumnName1", "Название столбца Id");
+            IdColumnName2 = AddControl<TextEdit>("IdColumnName2", "Название столбца Id");
+            XMLColumnName1 = AddControl<TextEdit>("XMLColumnName1", "Название столбца XML");
+            XMLColumnName2 = AddControl<TextEdit>("XMLColumnName2", "Название столбца XML");
+            Id1 = AddControl<TextEdit>("Id1", "Значение Id");
+            Id1.Properties.Mask.MaskType = MaskType.RegEx;
             Id1.Properties.Mask.EditMask = @"[0-9]+";
-            Id2 = Add<TextEdit>("Id2", "Значение Id");
-            Id2.Properties.Mask.MaskType = MaskType.Numeric;
-            Id2.Properties.Mask.EditMask = @"^[0-9]+";
-            OutputPath = Add<FolderBrowserControl>("OutputPath", "Папка");
-            OutputFileName = Add<TextEdit>("OutputFileName", "Название результирующего файла");
+            Id2 = AddControl<TextEdit>("Id2", "Значение Id");
+            Id2.Properties.Mask.MaskType = MaskType.RegEx;
+            Id2.Properties.Mask.EditMask = @"[0-9]+";
+            OutputPath = AddControl<FolderTextControl>("OutputPath", "Папка");
+            OutputFileName = AddControl<TextEdit>("OutputFileName", "Название результирующего файла");
             OutputFileName.Properties.Mask.MaskType = MaskType.RegEx;
             OutputFileName.Properties.Mask.EditMask = @".*[.]html";
-            TempFileName1 = Add<TextEdit>("TempFileName1", "Название файла c XML A");
+            TempFileName1 = AddControl<TextEdit>("TempFileName1", "Название файла c XML A");
             TempFileName1.Properties.Mask.MaskType = MaskType.RegEx;
             TempFileName1.Properties.Mask.EditMask = @".*[.]xml";
-            TempFileName2 = Add<TextEdit>("TempFileName2", "Название файла c XML Б");
+            TempFileName2 = AddControl<TextEdit>("TempFileName2", "Название файла c XML Б");
             TempFileName2.Properties.Mask.MaskType = MaskType.RegEx;
             TempFileName2.Properties.Mask.EditMask = @".*[.]xml";
-            DeleteTempFiles = Add<CheckEdit>("DeleteTempFiles", "Удалить файлы с XML после сравнения");
-            OpenFile = Add<CheckEdit>("OpenFile", "Открыть результирующий файл после успешного сравнения");
-            Compare = Add<SimpleButton>("Compare", "Сравнить");
+            DeleteTempFiles = AddControl<CheckEdit>("DeleteTempFiles", "Удалить файлы с XML после сравнения");
+            OpenFile = AddControl<CheckEdit>("OpenFile", "Открыть результирующий файл после успешного сравнения");
+            Compare = AddControl<SimpleButton>("Compare", "Сравнить");
             Compare.Click += (s, e) => DoCompare();
         }
 
-        protected override void CreateGroups()
+        protected override void CreateLayouts()
         {
+            base.CreateLayouts();
+
             AddGroup("Group1", "Параметры А");
             AddGroup("Group2", "Параметры Б");
             AddGroup("Group3", "Параметры результатов");

@@ -2,11 +2,11 @@
 using DevExpress.XtraEditors.Controls;
 using System.Windows.Forms;
 
-namespace XML
+namespace DevExpress
 {
-    public class FolderBrowserControl : ButtonEdit
+    public class FolderTextControl : ButtonEdit
     {
-        public FolderBrowserControl()
+        public FolderTextControl()
         {
             ButtonClick += (s, e) =>
             {
