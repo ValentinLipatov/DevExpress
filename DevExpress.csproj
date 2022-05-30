@@ -37,9 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Forms\Form.cs" />
+    <Compile Update="Manual\Forms\Form.cs" />
     <Compile Update="IControl.cs" />
-    <Compile Update="Forms\BaseForm.cs">
+    <Compile Update="Manual\Forms\BaseForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
